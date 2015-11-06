@@ -5,6 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+//authentication additions
+var mongoose = require('mongoose');
+var flash = require('connect-flash');
+var passport = require('passport');
+
+//database set up
+var DB = require('./config/db.js');
+mongoose.connect(DB.url);
+mongoose.connection.on('error', function(){
+  console.error('MongoDB Connection Error');
+});
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
